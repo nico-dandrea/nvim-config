@@ -1,0 +1,63 @@
+-- -- after/plugin/gp.lua
+-- local map = vim.keymap.set
+-- local opts = { noremap = true, silent = true }
+--
+-- -- 🧠 Agents
+-- map("n", "<leader>af", ":GpChatNew Fast Helper<CR>", opts)   -- Fast agent
+-- map("n", "<leader>adp", ":GpChatNew Deep Thinker<CR>", opts) -- Deep agent
+--
+-- -- General
+-- map("n", "<leader>an", ":GpChatNew<CR>", opts)   -- new chat
+-- map("v", "<leader>aa", ":GpChatPaste<CR>", opts) -- send selection
+-- map("n", "<leader>ab", ":GpChatBuffer<CR>", opts) -- send buffer
+-- map("n", "<leader>ap", ":GpChatRepo<CR>", opts)   -- send repo context
+--
+-- -- Send diagnostics
+-- map("n", "<leader>ad", function()
+--     local diags = vim.diagnostic.get(0)
+--     if vim.tbl_isempty(diags) then
+--         print("No diagnostics to send 🚀")
+--         return
+--     end
+--     local lines = {}
+--     for _, d in ipairs(diags) do
+--         table.insert(lines, d.message)
+--     end
+--     vim.fn.setreg("+", table.concat(lines, "\n"))
+--     vim.cmd("GpChatNew")
+--     vim.cmd("normal! \"+p")
+-- end, opts)
+--
+-- -- Telescope integration
+-- local builtin = require("telescope.builtin")
+-- map("n", "<leader>as", function()
+--   builtin.live_grep({
+--     prompt_title = "Search & Send to ChatGPT",
+--     attach_mappings = function(_, map)
+--       map("i", "<CR>", function(prompt_bufnr)
+--         local entry = require("telescope.actions.state").get_selected_entry()
+--         require("telescope.actions").close(prompt_bufnr)
+--         vim.cmd("GpChatNew")
+--         vim.cmd("GpChatPaste " .. entry.filename)
+--       end)
+--       return true
+--     end,
+--   })
+-- end, opts)
+--
+-- -- Terminal integration
+-- vim.api.nvim_create_autocmd("TermOpen", {
+--     callback = function(ev)
+--         local term_opts = { buffer = ev.buf, noremap = true, silent = true }
+--         local tmap = vim.keymap.set
+--
+--         tmap("n", "<leader>tb", ":GpChatBuffer<CR>", term_opts) -- send terminal buffer
+--         tmap("v", "<leader>ta", ":GpChatPaste<CR>", term_opts)  -- send visual selection
+--     end
+-- })
+--
+-- -- Floating chat in terminal
+-- map("t", "<leader>at", function()
+--     vim.cmd("GpChatNew popup")
+-- end, opts)
+--
