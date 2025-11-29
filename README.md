@@ -31,7 +31,7 @@ Using `lsp-zero` defaults with `lspsaga.nvim`:
 - Location list navigation: `<leader>k`, `<leader>j`.
 
 ### Debugging (nvim-dap)
-These mappings are attached buffer-locally whenever a buffer loads:
+Global mappings defined in `after/plugin/dap.lua`:
 - `<F5>` continue/start, `<F10>` step over, `<F11>` step into, `<F12>` step out.
 - `<leader>b` toggle breakpoint, `<leader>B` set conditional breakpoint, `<leader>dr` open the DAP REPL.
 

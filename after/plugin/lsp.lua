@@ -9,7 +9,6 @@ if not ok_mason_lsp then return end
 
 local ok_cmp_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not ok_cmp_lsp then return end
-
 if not (vim.lsp and vim.lsp.config and vim.lsp.enable) then return end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -27,7 +26,6 @@ local servers = {
     "ts_ls",
 }
 
--- ✅ Setup Mason
 mason.setup()
 mason_lspconfig.setup({
     ensure_installed = servers,
